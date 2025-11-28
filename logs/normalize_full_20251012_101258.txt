@@ -1,0 +1,6 @@
+
+🎯 Done — Full normalization complete.
+✅ Updated: 0
+⏭️ Skipped: 1000
+📚 Total processed: 1000
+🕒 Log saved: logs/normalize_full_20251012_101258.txt

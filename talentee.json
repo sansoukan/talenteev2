@@ -1,0 +1,5294 @@
+[
+  {
+    "table_name": "db_columns",
+    "columns": [
+      {
+        "column_name": "table_name",
+        "data_type": "name",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "column_name",
+        "data_type": "name",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "data_type",
+        "data_type": "character varying",
+        "is_nullable": "YES",
+        "default": null
+      }
+    ]
+  },
+  {
+    "table_name": "nova_analysis",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": "gen_random_uuid()"
+      },
+      {
+        "column_name": "user_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "session_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "cv",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "offer",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "result_text",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "default": "timezone('utc'::text, now())"
+      }
+    ]
+  },
+  {
+    "table_name": "nova_analytics",
+    "columns": [
+      {
+        "column_name": "event_id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": "gen_random_uuid()"
+      },
+      {
+        "column_name": "user_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "session_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "event_type",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "timestamp",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      }
+    ]
+  },
+  {
+    "table_name": "nova_articles",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": "uuid_generate_v4()"
+      },
+      {
+        "column_name": "title",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "slug",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "excerpt",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "content",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "cover_url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "author",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": "'Nova Coach'::text"
+      },
+      {
+        "column_name": "reading_time",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": "5"
+      },
+      {
+        "column_name": "category",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": "'career'::text"
+      },
+      {
+        "column_name": "tags",
+        "data_type": "ARRAY",
+        "is_nullable": "YES",
+        "default": "'{}'::text[]"
+      },
+      {
+        "column_name": "language",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": "'en'::text"
+      },
+      {
+        "column_name": "is_published",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": "true"
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      },
+      {
+        "column_name": "updated_at",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      }
+    ]
+  },
+  {
+    "table_name": "nova_ask_logs",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": "gen_random_uuid()"
+      },
+      {
+        "column_name": "user_id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "question",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      }
+    ]
+  },
+  {
+    "table_name": "nova_assets",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": "gen_random_uuid()"
+      },
+      {
+        "column_name": "type",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "lang",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "url",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "status",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": "'pending'::text"
+      },
+      {
+        "column_name": "version",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      },
+      {
+        "column_name": "updated_at",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      }
+    ]
+  },
+  {
+    "table_name": "nova_case_library",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": "uuid_generate_v4()"
+      },
+      {
+        "column_name": "theme",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "career_level",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "domain",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "sub_domain",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "difficulty",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": "'medium'::text"
+      },
+      {
+        "column_name": "duration_estimate",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": "900"
+      },
+      {
+        "column_name": "title",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "intro",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "context",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "data_block_json",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "prompt_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "prompt_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "expected_answer_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "expected_answer_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "evaluation_axes",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "annexes",
+        "data_type": "ARRAY",
+        "is_nullable": "YES",
+        "default": "'{}'::text[]"
+      },
+      {
+        "column_name": "video_intro_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_solution_url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "image_cover_url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "is_active",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": "true"
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      },
+      {
+        "column_name": "updated_at",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      },
+      {
+        "column_name": "video_q1_url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_q2_url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_q3_url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_q4_url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_q5_url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_1_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_2_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_3_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_4_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_5_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_1_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_2_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_3_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_4_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_5_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_1_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_2_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_3_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_4_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_5_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "tags",
+        "data_type": "ARRAY",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "role_targets",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "expected_scope",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "intro_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "intro_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "intro_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_q1_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_q2_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_q3_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_q4_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_q5_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_q1_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_q2_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_q3_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_q4_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_q5_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_q1_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_q2_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_q3_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_q4_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_q5_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_intro_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_intro_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_solution_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_solution_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "expected_keywords",
+        "data_type": "ARRAY",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "expected_structure",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "version",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": "'v1'::text"
+      },
+      {
+        "column_name": "is_premium",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": "false"
+      },
+      {
+        "column_name": "source",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": "'manual'::text"
+      },
+      {
+        "column_name": "expected_answer_q1",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "expected_answer_q2",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "expected_answer_q3",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "expected_answer_q4",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "expected_answer_q5",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      }
+    ]
+  },
+  {
+    "table_name": "nova_casebank_master",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "theme",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "theme_label",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "context_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "context_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "context_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "expected_tags",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "difficulty_level",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "is_active",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "data_block_markdown",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_1_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_1_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_1_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_2_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_2_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_2_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_3_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_3_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_3_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_4_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_4_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_4_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_5_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_5_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_5_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_6_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_6_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_6_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "bonus_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "bonus_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "bonus_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      }
+    ]
+  },
+  {
+    "table_name": "nova_casebank_test",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "theme",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "theme_label",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "context_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "context_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "context_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "expected_tags",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "difficulty_level",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "is_active",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "data_block_markdown",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_1_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_1_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_1_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_2_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_2_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_2_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_3_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_3_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_3_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_4_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_4_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_4_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_5_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_5_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_5_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_6_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_6_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_6_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "bonus_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "bonus_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "bonus_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      }
+    ]
+  },
+  {
+    "table_name": "nova_certifications",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": "gen_random_uuid()"
+      },
+      {
+        "column_name": "user_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "skill_improved",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "score",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "badge_url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      }
+    ]
+  },
+  {
+    "table_name": "nova_credits",
+    "columns": [
+      {
+        "column_name": "user_id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "minutes_total",
+        "data_type": "integer",
+        "is_nullable": "NO",
+        "default": "0"
+      },
+      {
+        "column_name": "minutes_used",
+        "data_type": "integer",
+        "is_nullable": "NO",
+        "default": "0"
+      },
+      {
+        "column_name": "is_freemium_used",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": "false"
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      },
+      {
+        "column_name": "credits_sessions",
+        "data_type": "integer",
+        "is_nullable": "NO",
+        "default": "0"
+      },
+      {
+        "column_name": "credits_total",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": "0"
+      },
+      {
+        "column_name": "updated_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      }
+    ]
+  },
+  {
+    "table_name": "nova_cv_profiles",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": "gen_random_uuid()"
+      },
+      {
+        "column_name": "user_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "parsed_name",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "parsed_title",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "languages",
+        "data_type": "ARRAY",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "skills",
+        "data_type": "ARRAY",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "experiences",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "tags",
+        "data_type": "ARRAY",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "seniority",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "domain_focus",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "last_updated_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      }
+    ]
+  },
+  {
+    "table_name": "nova_dashboard_view",
+    "columns": [
+      {
+        "column_name": "user_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "xp_total",
+        "data_type": "bigint",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "axes",
+        "data_type": "json",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "prefs",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "last_update",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "last_session_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "last_session_score",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "last_session_premium",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "last_session_started_at",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "last_session_ended_at",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "last_analysis",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "last_analysis_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "default": null
+      }
+    ]
+  },
+  {
+    "table_name": "nova_domain_hierarchy",
+    "columns": [
+      {
+        "column_name": "domain",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "domain_label",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "elite_subdomains",
+        "data_type": "json",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "operational_subdomains",
+        "data_type": "json",
+        "is_nullable": "YES",
+        "default": null
+      }
+    ]
+  },
+  {
+    "table_name": "nova_domains",
+    "columns": [
+      {
+        "column_name": "value",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "label",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "segment_target",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": "'all'::text"
+      }
+    ]
+  },
+  {
+    "table_name": "nova_emotions",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": "gen_random_uuid()"
+      },
+      {
+        "column_name": "session_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "user_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "eye_contact",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "smiles",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "hesitations",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "tone",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "posture_score",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "timestamp",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      },
+      {
+        "column_name": "words_per_min",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "stress",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "confidence",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "smile",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "posture",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "expressions",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "gaze_direction",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "gaze_stability",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "face_orientation",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "authenticity_score",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "raw_data",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": "'{}'::jsonb"
+      }
+    ]
+  },
+  {
+    "table_name": "nova_fallbacks",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "lang",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "url",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "description",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      }
+    ]
+  },
+  {
+    "table_name": "nova_feedback_audio",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": "gen_random_uuid()"
+      },
+      {
+        "column_name": "question_id",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "lang",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "audio_url",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      }
+    ]
+  },
+  {
+    "table_name": "nova_feedback_library",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": "gen_random_uuid()"
+      },
+      {
+        "column_name": "feedback_text",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "lang",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "score_level",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "theme",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "asset_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      },
+      {
+        "column_name": "ideal_axis",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "career_stage",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "domain",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "sub_domain",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      }
+    ]
+  },
+  {
+    "table_name": "nova_internal_library",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "type",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "intro_video",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_1_video",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_2_video",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_3_video",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "feedback_videos",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "text",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "theme",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "tags",
+        "data_type": "ARRAY",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "expected_structure",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "is_active",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": "true"
+      }
+    ]
+  },
+  {
+    "table_name": "nova_intro_questions",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "text",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "is_active",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": "true"
+      }
+    ]
+  },
+  {
+    "table_name": "nova_memory",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": "gen_random_uuid()"
+      },
+      {
+        "column_name": "user_id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": "auth.uid()"
+      },
+      {
+        "column_name": "question_id",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "reponse",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "score",
+        "data_type": "bigint",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      },
+      {
+        "column_name": "feedback",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "session_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "theme",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "tag",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_played",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "lang",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "attempt",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": "1"
+      },
+      {
+        "column_name": "answer_first",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "answer_second",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "needs_clarify",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": "false"
+      },
+      {
+        "column_name": "clarity_followup_used",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "clarity_summary",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "improvement_score",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "ai_feedback",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "ai_tip",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "ai_score",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "ai_scores_detail",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "feedback_text",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "latency_before_answer",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "speaking_speed_wpm",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "hesitations_count",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "stress_score",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "confidence_score",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "eye_contact_score",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "posture_score",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "transcript_clean",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "tags_detected",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "ideal_answer_distance",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "duration_ms",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "pauses_count",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "emotions_snapshot",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "feedback_video_selected",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "expected_answer_used",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "scoring_axes",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "transcript",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "feedback_json",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "feedback_audio",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "score_auto",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": null
+      }
+    ]
+  },
+  {
+    "table_name": "nova_memory_extended",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": "gen_random_uuid()"
+      },
+      {
+        "column_name": "user_id",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "question_id",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "reponse",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "score",
+        "data_type": "double precision",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "feedback",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "theme",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "tag",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "langue",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      }
+    ]
+  },
+  {
+    "table_name": "nova_pdf_analysis",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": "gen_random_uuid()"
+      },
+      {
+        "column_name": "session_id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "analysis_json",
+        "data_type": "jsonb",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "NO",
+        "default": "now()"
+      }
+    ]
+  },
+  {
+    "table_name": "nova_pdf_i18n",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "integer",
+        "is_nullable": "NO",
+        "default": "nextval('nova_pdf_i18n_id_seq'::regclass)"
+      },
+      {
+        "column_name": "key",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "lang",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "value",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      }
+    ]
+  },
+  {
+    "table_name": "nova_profile",
+    "columns": [
+      {
+        "column_name": "user_id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": "gen_random_uuid()"
+      },
+      {
+        "column_name": "xp_total",
+        "data_type": "bigint",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "axes",
+        "data_type": "json",
+        "is_nullable": "YES",
+        "default": "' {} '::json"
+      },
+      {
+        "column_name": "last_update",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      },
+      {
+        "column_name": "prefs",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": "'{}'::jsonb"
+      }
+    ]
+  },
+  {
+    "table_name": "nova_purchases",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": "gen_random_uuid()"
+      },
+      {
+        "column_name": "user_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "option",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "price_id",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": "'unknown'::text"
+      },
+      {
+        "column_name": "amount",
+        "data_type": "numeric",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "currency",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": "'usd'::text"
+      },
+      {
+        "column_name": "status",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": "'pending'::text"
+      },
+      {
+        "column_name": "session_id",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "NO",
+        "default": "now()"
+      },
+      {
+        "column_name": "updated_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "NO",
+        "default": "now()"
+      },
+      {
+        "column_name": "payment_provider",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": "'stripe'::text"
+      },
+      {
+        "column_name": "receipt_url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "provider_session_id",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "paid_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "default": null
+      }
+    ]
+  },
+  {
+    "table_name": "nova_question_audio",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": "uuid_generate_v4()"
+      },
+      {
+        "column_name": "question_id",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "lang",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "audio_url",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "checksum",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      }
+    ]
+  },
+  {
+    "table_name": "nova_question_usage_log",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": "gen_random_uuid()"
+      },
+      {
+        "column_name": "question_id",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "session_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "user_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      }
+    ]
+  },
+  {
+    "table_name": "nova_questions",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": "gen_random_uuid()"
+      },
+      {
+        "column_name": "question_id",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "question_en",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "text",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "role_targets",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "sub_tags",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "theme",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "tag_metiers",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "expected_scope",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "difficulty",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "progressive",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_url_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_url_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_url_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_feedback_high",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_feedback_mid",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_feedback_low",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "is_premium",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": "false"
+      },
+      {
+        "column_name": "is_active",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": "true"
+      },
+      {
+        "column_name": "version",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": "'v1'::text"
+      },
+      {
+        "column_name": "last_used_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      },
+      {
+        "column_name": "question_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "career_target",
+        "data_type": "ARRAY",
+        "is_nullable": "YES",
+        "default": "'{}'::text[]"
+      },
+      {
+        "column_name": "domain_target",
+        "data_type": "ARRAY",
+        "is_nullable": "YES",
+        "default": "'{}'::text[]"
+      },
+      {
+        "column_name": "type",
+        "data_type": "USER-DEFINED",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "lang",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": "'en'::text"
+      },
+      {
+        "column_name": "goal_target",
+        "data_type": "ARRAY",
+        "is_nullable": "YES",
+        "default": "'{}'::text[]"
+      },
+      {
+        "column_name": "case_id",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "role",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "maturity_level",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "category",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "fit_compatible",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": "false"
+      },
+      {
+        "column_name": "expected_structure",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "text_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "text_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "tags",
+        "data_type": "ARRAY",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      },
+      {
+        "column_name": "updated_at",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      },
+      {
+        "column_name": "domain",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "sub_domain",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "career_stage",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "expected_answer_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "expected_answer_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "evaluation_axes",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": "'{\"clarity\": 0.3, \"insight\": 0.2, \"structure\": 0.3, \"leadership\": 0.2}'::jsonb"
+      },
+      {
+        "column_name": "expected_keywords",
+        "data_type": "ARRAY",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "case_linked",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "usage_context",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": "'external'::text"
+      },
+      {
+        "column_name": "source",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": "'import'::text"
+      },
+      {
+        "column_name": "keywords",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "is_student",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": "false"
+      },
+      {
+        "column_name": "is_graduate",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": "false"
+      },
+      {
+        "column_name": "is_professional",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": "false"
+      },
+      {
+        "column_name": "is_manager",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": "false"
+      },
+      {
+        "column_name": "is_exec",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": "false"
+      },
+      {
+        "column_name": "translation_score",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "translation_comment",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "translation_suggestion",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "reformulation",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": "'{}'::jsonb"
+      },
+      {
+        "column_name": "segment",
+        "data_type": "ARRAY",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "ordre_par_defaut",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "probability",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": "50"
+      },
+      {
+        "column_name": "rephrase_text_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "rephrase_text_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "rephrase_text_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_it",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_de",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_zh",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_ko",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "expected_answer_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "expected_answer_it",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "expected_answer_de",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "expected_answer_zh",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "expected_answer_ko",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "rephrase_text_it",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "rephrase_text_de",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "rephrase_text_zh",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "rephrase_text_ko",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "simple_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "simple_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "simple_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "simple_it",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "simple_de",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "simple_zh",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "simple_ko",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "audio_prompt_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "audio_prompt_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "audio_prompt_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "audio_prompt_it",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "audio_prompt_de",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "audio_prompt_zh",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "audio_prompt_ko",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      }
+    ]
+  },
+  {
+    "table_name": "nova_questions_backup",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_id",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "text",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "role_targets",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "sub_tags",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "theme",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "tag_metiers",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "tags",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "expected_scope",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "difficulty",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "progressive",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_url_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_url_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_url_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_feedback_high",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_feedback_mid",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_feedback_low",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "is_premium",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "is_active",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "version",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "last_used_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "career_target",
+        "data_type": "ARRAY",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "domain_target",
+        "data_type": "ARRAY",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "type",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "lang",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "goal_target",
+        "data_type": "ARRAY",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "case_id",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "role",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "maturity_level",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "category",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "fit_compatible",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "expected_structure",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "text_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "text_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      }
+    ]
+  },
+  {
+    "table_name": "nova_questions_clone",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": "gen_random_uuid()"
+      },
+      {
+        "column_name": "question_id",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "question_en",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "text",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "role_targets",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "sub_tags",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "theme",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "tag_metiers",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "expected_scope",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "difficulty",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "progressive",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_url_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_url_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_url_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_feedback_high",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_feedback_mid",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_feedback_low",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "is_premium",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": "false"
+      },
+      {
+        "column_name": "is_active",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": "true"
+      },
+      {
+        "column_name": "version",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": "'v1'::text"
+      },
+      {
+        "column_name": "last_used_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      },
+      {
+        "column_name": "question_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "career_target",
+        "data_type": "ARRAY",
+        "is_nullable": "YES",
+        "default": "'{}'::text[]"
+      },
+      {
+        "column_name": "domain_target",
+        "data_type": "ARRAY",
+        "is_nullable": "YES",
+        "default": "'{}'::text[]"
+      },
+      {
+        "column_name": "type",
+        "data_type": "USER-DEFINED",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "lang",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": "'en'::text"
+      },
+      {
+        "column_name": "goal_target",
+        "data_type": "ARRAY",
+        "is_nullable": "YES",
+        "default": "'{}'::text[]"
+      },
+      {
+        "column_name": "case_id",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "role",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "maturity_level",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "category",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "fit_compatible",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": "false"
+      },
+      {
+        "column_name": "expected_structure",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "text_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "text_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "tags",
+        "data_type": "ARRAY",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      },
+      {
+        "column_name": "updated_at",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      },
+      {
+        "column_name": "domain",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "sub_domain",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "career_stage",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "expected_answer_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "expected_answer_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "evaluation_axes",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": "'{\"clarity\": 0.3, \"insight\": 0.2, \"structure\": 0.3, \"leadership\": 0.2}'::jsonb"
+      },
+      {
+        "column_name": "expected_keywords",
+        "data_type": "ARRAY",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "case_linked",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "usage_context",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": "'external'::text"
+      },
+      {
+        "column_name": "source",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": "'import'::text"
+      },
+      {
+        "column_name": "keywords",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "is_student",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": "false"
+      },
+      {
+        "column_name": "is_graduate",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": "false"
+      },
+      {
+        "column_name": "is_professional",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": "false"
+      },
+      {
+        "column_name": "is_manager",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": "false"
+      },
+      {
+        "column_name": "is_exec",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": "false"
+      },
+      {
+        "column_name": "translation_score",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "translation_comment",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "translation_suggestion",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      }
+    ]
+  },
+  {
+    "table_name": "nova_questions_test",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "text",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_question",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      }
+    ]
+  },
+  {
+    "table_name": "nova_reactions",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": "gen_random_uuid()"
+      },
+      {
+        "column_name": "type",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "emotion",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "posture",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "duration",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": "7.0"
+      },
+      {
+        "column_name": "file_name",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "lang",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": "'en'::text"
+      },
+      {
+        "column_name": "is_active",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": "true"
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      },
+      {
+        "column_name": "updated_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      }
+    ]
+  },
+  {
+    "table_name": "nova_relance_memory",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": "gen_random_uuid()"
+      },
+      {
+        "column_name": "user_id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "session_id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "relance_id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "niveau",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "theme",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "used_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "default": "timezone('utc'::text, now())"
+      }
+    ]
+  },
+  {
+    "table_name": "nova_relances",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": "gen_random_uuid()"
+      },
+      {
+        "column_name": "niveau",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "theme",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "relance_text_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "relance_text_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "relance_text_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "relance_text_de",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "relance_text_it",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "relance_text_nl",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "relance_text_zh",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "relance_text_ko",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_url_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_url_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_url_es",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_url_de",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_url_it",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_url_nl",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_url_zh",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_url_ko",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "is_active",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": "true"
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      },
+      {
+        "column_name": "is_generic_fallback",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": "false"
+      },
+      {
+        "column_name": "relance_text_pt",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "relance_text_ja",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_url_pt",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_url_ja",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      }
+    ]
+  },
+  {
+    "table_name": "nova_responses",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": "gen_random_uuid()"
+      },
+      {
+        "column_name": "user_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_input",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "normalized_question",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "response_text",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "video_url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "lang",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": "'fr'::text"
+      },
+      {
+        "column_name": "tags",
+        "data_type": "ARRAY",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      }
+    ]
+  },
+  {
+    "table_name": "nova_role_expectations",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": "gen_random_uuid()"
+      },
+      {
+        "column_name": "role",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "ladder_level",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "sub_tag",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "expectation",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "importance",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": "2"
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      }
+    ]
+  },
+  {
+    "table_name": "nova_scenarios",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": "gen_random_uuid()"
+      },
+      {
+        "column_name": "type",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "questions_order",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "duration",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "difficulty_curve",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      },
+      {
+        "column_name": "video_sequence",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      }
+    ]
+  },
+  {
+    "table_name": "nova_session_plan",
+    "columns": [
+      {
+        "column_name": "session_id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "user_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "language",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "questions_ordered",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "missing_questions",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      }
+    ]
+  },
+  {
+    "table_name": "nova_sessions",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": "gen_random_uuid()"
+      },
+      {
+        "column_name": "user_id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": "gen_random_uuid()"
+      },
+      {
+        "column_name": "score",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "ended_at",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "type",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "lang",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "started_at",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "is_premium",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "niveau",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "duration",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "report_url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "feedback_text",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "feedback_audio",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "questions",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "profile",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "detailed_report",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "detail",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "price_usd",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "price_local",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "currency",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": "'USD'::text"
+      },
+      {
+        "column_name": "domain",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "goal",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "price_value",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "max_questions",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": "10"
+      },
+      {
+        "column_name": "is_freemium",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": "false"
+      },
+      {
+        "column_name": "role_target",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "type_entretien",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "status",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": "'started'::text"
+      },
+      {
+        "column_name": "cv_context",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "offer_context",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "score_global",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "summary_json",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "duration_limit",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": "300"
+      },
+      {
+        "column_name": "fit_asked",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": "0"
+      },
+      {
+        "column_name": "general_asked",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": "0"
+      },
+      {
+        "column_name": "closing_asked",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": "0"
+      },
+      {
+        "column_name": "sub_domain",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      },
+      {
+        "column_name": "updated_at",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      },
+      {
+        "column_name": "axes_improvement",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": "'[]'::jsonb"
+      },
+      {
+        "column_name": "match_score",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "global_feedback",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "segment",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "career_target",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "total_questions",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "duration_target",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "paid_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "payment_session_id",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "payment_provider",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "payment_status",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": "'pending'::text"
+      },
+      {
+        "column_name": "final_feedback_text",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "final_feedback_audio",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "final_feedback_summary",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "final_feedback_axes",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "speaking_time_total",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "silence_time_total",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "emotion_summary",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "posture_summary",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "transcript_full",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "session_replay_manifest",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "ideal_answers_used",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "feedback_segments_used",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "clarity_overall",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "structure_overall",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "communication_overall",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "confidence_overall",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "behavior_summary",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "chosen_lang",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "tts_lang",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "preferred_subtitles_lang",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "repeat_count",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": "0"
+      }
+    ]
+  },
+  {
+    "table_name": "nova_subdomains",
+    "columns": [
+      {
+        "column_name": "domain_value",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "value",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "label",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "segment",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      }
+    ]
+  },
+  {
+    "table_name": "nova_tips",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": "uuid_generate_v4()"
+      },
+      {
+        "column_name": "category",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "text",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "example",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "level",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": "'all'::text"
+      },
+      {
+        "column_name": "language",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": "'en'::text"
+      },
+      {
+        "column_name": "source",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "weight",
+        "data_type": "double precision",
+        "is_nullable": "YES",
+        "default": "1"
+      },
+      {
+        "column_name": "is_active",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": "true"
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      },
+      {
+        "column_name": "updated_at",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      }
+    ]
+  },
+  {
+    "table_name": "nova_type_fix_log",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "old_type",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "new_type",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "decided_by",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "fixed_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      }
+    ]
+  },
+  {
+    "table_name": "nova_veo_tasks",
+    "columns": [
+      {
+        "column_name": "task_id",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "question_id",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "status",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": "'pending'::text"
+      },
+      {
+        "column_name": "raw_payload",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      },
+      {
+        "column_name": "updated_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      }
+    ]
+  },
+  {
+    "table_name": "profiles",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": "gen_random_uuid()"
+      },
+      {
+        "column_name": "freemium_use_done",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "premium_status",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "nom",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "prenom",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "role",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": "'user'::text"
+      },
+      {
+        "column_name": "career_stage",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "domain",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "goal",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "stripe_price_id",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "is_tester",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": "false"
+      },
+      {
+        "column_name": "onboarding_completed",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": "false"
+      },
+      {
+        "column_name": "is_admin",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": "false"
+      },
+      {
+        "column_name": "sms_freemium_used",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": "false"
+      },
+      {
+        "column_name": "phone",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "phone_verified",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": "false"
+      },
+      {
+        "column_name": "goal_type",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "lang",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": "'en'::text"
+      },
+      {
+        "column_name": "last_cv_url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "last_cv_feedback",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "last_cv_upload_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      },
+      {
+        "column_name": "detected_domain",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "detected_role",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "detected_lang",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "skills",
+        "data_type": "jsonb",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "updated_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "default": "timezone('utc'::text, now())"
+      },
+      {
+        "column_name": "sub_domain",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "is_realistic_mode",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": "false"
+      },
+      {
+        "column_name": "segment",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "career_target",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "education_level",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      }
+    ]
+  },
+  {
+    "table_name": "v_nova_feedback_radar",
+    "columns": [
+      {
+        "column_name": "session_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "user_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "type_entretien",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "answers_count",
+        "data_type": "bigint",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "global_avg",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "relevance_avg",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "clarity_avg",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "structure_avg",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "confidence_avg",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "depth_avg",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": null
+      }
+    ]
+  },
+  {
+    "table_name": "v_nova_videos_urls",
+    "columns": [
+      {
+        "column_name": "file_name",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "public_url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      }
+    ]
+  },
+  {
+    "table_name": "v_system_assets_auto",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "type",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "lang",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "status",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "version",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "filename",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "last_update",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "default": null
+      }
+    ]
+  },
+  {
+    "table_name": "vw_nova_analytics",
+    "columns": [
+      {
+        "column_name": "user_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "nom",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "prenom",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "segment",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "user_domain",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "career_stage",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "session_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "session_status",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "lang",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "session_domain",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "session_created_at",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "session_paid_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "is_premium",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "score",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "score_global",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "purchase_id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "purchase_status",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "amount",
+        "data_type": "numeric",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "currency",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "payment_provider",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "purchase_paid_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "default": null
+      }
+    ]
+  },
+  {
+    "table_name": "vw_nova_questions_unified",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_fr",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "question_en",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "video_url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "theme",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "role",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "expected_scope",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "category",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "difficulty",
+        "data_type": "integer",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "is_active",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "is_premium",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "fit_compatible",
+        "data_type": "boolean",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "domain_target",
+        "data_type": "ARRAY",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "career_target",
+        "data_type": "ARRAY",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "goal_target",
+        "data_type": "ARRAY",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "tags",
+        "data_type": "ARRAY",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "sub_tags",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "tag_metiers",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "available_lang",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      }
+    ]
+  },
+  {
+    "table_name": "waitlist",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": "gen_random_uuid()"
+      },
+      {
+        "column_name": "email",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp without time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      }
+    ]
+  },
+  {
+    "table_name": "waitlist_emails",
+    "columns": [
+      {
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "default": "gen_random_uuid()"
+      },
+      {
+        "column_name": "email",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "default": null
+      },
+      {
+        "column_name": "source",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": "'landing'::text"
+      },
+      {
+        "column_name": "user_agent",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "ip",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "created_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "default": "now()"
+      }
+    ]
+  },
+  {
+    "table_name": "waitlist_emails_daily",
+    "columns": [
+      {
+        "column_name": "day",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "default": null
+      },
+      {
+        "column_name": "n",
+        "data_type": "bigint",
+        "is_nullable": "YES",
+        "default": null
+      }
+    ]
+  }
+]

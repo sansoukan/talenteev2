@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="60" viewBox="0 0 220 60" fill="none">
+  <defs>
+    <linearGradient id="grad" x1="0" y1="0" x2="220" y2="0">
+      <stop offset="0%" stop-color="#1677ff"/>
+      <stop offset="100%" stop-color="#6b5bff"/>
+    </linearGradient>
+  </defs>
+  <text x="0" y="42" font-family="Poppins, Inter, Arial, sans-serif" font-size="38" font-weight="600"
+        fill="url(#grad)" letter-spacing="0.5">Talentee</text>
+</svg>

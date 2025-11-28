@@ -1,0 +1,7 @@
+tunnel: 7a70a750-ba8b-4544-b740-ecf217b2fb3b
+credentials-file: /Users/redafettah/.cloudflared/7a70a750-ba8b-4544-b740-ecf217b2fb3b.json
+
+ingress:
+  - hostname: nova.local.cloudflare
+    service: http://localhost:3000
+  - service: http_status:404
