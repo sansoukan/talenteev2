@@ -945,7 +945,3 @@ export default function NovaEngine_Playlist({ sessionId }: { sessionId: string }
             <p className="text-xl text-white">Generating your feedback...</p>
           </div>
         </div>
-      )}
-    </main>
-  )
-}
