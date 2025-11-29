@@ -78,41 +78,17 @@ export default function NovaEngine_Playlist({ sessionId }: { sessionId: string }
   const [session, setSession] = useState<any>(null)
   // 🔥 Patch sécurité : élimine le placeholder 404
   const [videoSrc, setVideoSrc] = useState<string | null>(null)
-
-  useEffect(() => {
-    if (videoSrc && videoSrc.includes("placeholder")) {
-      console.warn("🟧 placeholder détecté → ignoré")
-      setVideoSrc(null)
-    }
-  }, [videoSrc])
-
-  /* ============================================================
-     🔵 PRELOAD SYSTEM VIDEOS (obligatoire Chrome)
-  ============================================================ */
-  useEffect(() => {
-    ;(async () => {
-      try {
-        console.log("📦 Préchargement vidéos système…")
-        const { preloadSystemVideos } = await import("@/lib/preloadSystemVideos")
-        await preloadSystemVideos("en") // intros = en; idle = toutes langues OK
-        console.log("✅ Préchargement vidéos OK")
-      } catch (err) {
-        console.error("❌ Erreur preloadSystemVideos:", err)
-      }
-    })()
-  }, [])
-
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [videoPaused, setVideoPaused] = useState(false)
-  const [audioUnlocked, setAudioUnlocked] = useState(false)
-  const [lastFollowupText, setLastFollowupText] = useState<string | null>(null)
-  const [hovered, setHovered] = useState(false)
-  const [userCameraHovered, setUserCameraHovered] = useState(false)
+  const [playlistReady, setPlaylistReady] = useState(false)
   const [hasStarted, setHasStarted] = useState(false)
-  const [micEnabled, setMicEnabled] = useState(false)
-  const [userCameraStream, setUserCameraStream] = useState<MediaStream | null>(null)
-  const [showDashboardButton, setShowDashboardButton] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [lastFollowupText, setLastFollowupText] = useState("")
+  const [userCameraStream, setUserCameraStream] = useState<any>(null)
+  const [audioUnlocked, setAudioUnlocked] = useState(false)
   const [showPreparingOverlay, setShowPreparingOverlay] = useState(false)
+  const [showDashboardButton, setShowDashboardButton] = useState(false)
+  const [userCameraHovered, setUserCameraHovered] = useState(false)
+  const [videoPaused, setVideoPaused] = useState(false)
+  const [micEnabled, setMicEnabled] = useState(false)
 
   const responseMetrics = useRef<ResponseMetrics>({
     startTime: 0,
@@ -270,14 +246,18 @@ export default function NovaEngine_Playlist({ sessionId }: { sessionId: string }
   }, [session, playlist, lastFollowupText])
 
   useEffect(() => {
-    playlist.subscribe((next) => {
+    const handleVideoChange = (next: string | null) => {
+      console.log("[v0] Playlist emitted video:", next)
       if (!next) {
         console.log("⏸ Playlist vide — attente de clips.")
         return
       }
 
       const v = videoRef.current
-      if (!v) return
+      if (!v) {
+        setVideoSrc(next)
+        return
+      }
 
       const preload = document.createElement("video")
       preload.src = next
@@ -307,7 +287,15 @@ export default function NovaEngine_Playlist({ sessionId }: { sessionId: string }
 
       console.log("🎬 Lecture du prochain clip:", next)
       setVideoSrc(next)
-    })
+    }
+
+    playlist.subscribe(handleVideoChange)
+    setPlaylistReady(true)
+    console.log("[v0] Playlist subscription ready")
+
+    return () => {
+      playlist.unsubscribe(handleVideoChange)
+    }
   }, [playlist])
 
   useEffect(() => {
@@ -388,6 +376,7 @@ export default function NovaEngine_Playlist({ sessionId }: { sessionId: string }
   }, [sessionId, session, simulationMode])
 
   const handleStart = async () => {
+    console.log("[v0] handleStart called, playlistReady:", playlistReady)
     playlist.reset?.()
     console.log("♻️ Playlist nettoyée avant démarrage")
     if (!session) return console.warn("⚠️ Session non chargée")
@@ -399,10 +388,13 @@ export default function NovaEngine_Playlist({ sessionId }: { sessionId: string }
 
     try {
       const intro1 = await flowRef.current.getIntro1()
-      playlist.add(intro1)
+      console.log("[v0] Got intro1:", intro1)
 
       const intro2 = await flowRef.current.getIntro2()
-      playlist.add(intro2)
+      console.log("[v0] Got intro2:", intro2)
+
+      playlist.add(intro1, intro2)
+      console.log("[v0] Added intros to playlist, size:", playlist.size())
 
       console.log("🎞️ Playlist initialisée avec intro_1 + intro_2")
       setIsPlaying(true)
@@ -684,8 +676,8 @@ export default function NovaEngine_Playlist({ sessionId }: { sessionId: string }
         {/* Video area - takes all available space */}
         <div
           className="flex-1 relative bg-black"
-          onMouseEnter={() => setHovered(true)}
-          onMouseLeave={() => setHovered(false)}
+          onMouseEnter={() => setUserCameraHovered(true)}
+          onMouseLeave={() => setUserCameraHovered(false)}
         >
           {/* Video player - full size */}
           {videoSrc ? (
@@ -857,7 +849,7 @@ export default function NovaEngine_Playlist({ sessionId }: { sessionId: string }
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                      d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
                     />
                   </svg>
                   <span className="text-sm font-medium">Audio On</span>
@@ -1028,4 +1020,3 @@ export function emitSilence() {
     if (typeof cb === "function") cb()
   } catch {}
 }
-  
