@@ -89,6 +89,3 @@ const NovaChatBox_TextOnly = forwardRef<NovaChatBoxTextOnlyRef, { onUserMessage:
   },
 )
 
-NovaChatBox_TextOnly.displayName = "NovaChatBox_TextOnly"
-
-export default NovaChatBox_TextOnly
