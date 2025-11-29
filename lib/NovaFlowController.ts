@@ -71,6 +71,10 @@ export class NovaFlowController {
   // 2️⃣ INITIAL Q1 — FIX CTO GOOGLE (V4 FINAL)
   // ============================================================
   async fetchQ1() {
+    console.log("[v0] fetchQ1() called")
+    console.log("[v0] ctx.currentQuestion:", this.ctx.currentQuestion?.question_id)
+    console.log("[v0] ctx.nextQuestions length:", this.ctx.nextQuestions?.length)
+
     // ----------------------------------------------------------
     // CAS 1 — Questions injectées par le front (INIT_Q1)
     // ----------------------------------------------------------
@@ -79,18 +83,24 @@ export class NovaFlowController {
 
       const q1 = this.ctx.currentQuestion
 
+      console.log("[v0] Q1 question_id:", q1.question_id || q1.id)
+      if (q1.question_id !== "q_0001") {
+        console.warn("[v0] WARNING: First question is NOT q_0001, it is:", q1.question_id)
+      }
+
       if (this.ctx.mode === "audio") {
         this.transition("Q1_AUDIO")
         return { type: "audio", question: q1 }
       }
 
       this.transition("Q1_VIDEO")
+      const videoUrl = this.ctx.lang === "fr" ? q1.video_url_fr || q1.video_url_en : q1.video_url_en || q1.video_url_fr
+
       return {
         type: "video",
         url:
-          q1.video_url_en ||
-          q1.video_url_fr ||
-          "https://qpnalviccuopdwfscoli.supabase.co/storage/v1/object/public/system/question_missing.mp4",
+          videoUrl || "https://qpnalviccuopdwfscoli.supabase.co/storage/v1/object/public/system/question_missing.mp4",
+        question: q1,
       }
     }
 
@@ -100,8 +110,22 @@ export class NovaFlowController {
     if (Array.isArray(this.ctx.nextQuestions) && this.ctx.nextQuestions.length > 0) {
       console.log("🟧 fetchQ1() — utilisation de nextQuestions[]")
 
-      const q1 = this.ctx.nextQuestions[0]
+      const q0001Index = this.ctx.nextQuestions.findIndex((q) => q.question_id === "q_0001")
+      let q1: any
+
+      if (q0001Index !== -1) {
+        // q_0001 found - use it as first question
+        q1 = this.ctx.nextQuestions.splice(q0001Index, 1)[0]
+        console.log("[v0] Found q_0001 at index", q0001Index, "- using it as first question")
+      } else {
+        // q_0001 not in list - use first question
+        q1 = this.ctx.nextQuestions.shift()
+        console.warn("[v0] q_0001 not found in nextQuestions, using first available:", q1?.question_id)
+      }
+
       this.ctx.currentQuestion = q1
+
+      console.log("[v0] Q1 question_id:", q1.question_id || q1.id)
 
       if (this.ctx.mode === "audio") {
         this.transition("Q1_AUDIO")
@@ -109,18 +133,20 @@ export class NovaFlowController {
       }
 
       this.transition("Q1_VIDEO")
+      const videoUrl = this.ctx.lang === "fr" ? q1.video_url_fr || q1.video_url_en : q1.video_url_en || q1.video_url_fr
+
       return {
         type: "video",
         url:
-          q1.video_url_en ||
-          q1.video_url_fr ||
-          "https://qpnalviccuopdwfscoli.supabase.co/storage/v1/object/public/system/question_missing.mp4",
+          videoUrl || "https://qpnalviccuopdwfscoli.supabase.co/storage/v1/object/public/system/question_missing.mp4",
+        question: q1,
       }
     }
 
     // ----------------------------------------------------------
     // CAS 3 — Fallback orchestrate
     // ----------------------------------------------------------
+    console.log("[v0] fetchQ1() — calling orchestrate API")
     const res = await fetch("/api/engine/orchestrate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -130,11 +156,13 @@ export class NovaFlowController {
     const json = await res.json()
     const q1 = json.question || json.questions?.[0]
 
+    console.log("[v0] Q1 from orchestrate, question_id:", q1?.question_id || q1?.id)
+
     this.ctx.currentQuestion = q1
     this.ctx.nextQuestions = json.questions ? [...json.questions] : []
 
     // 🔥 Évite Q1 en double
-    if (this.ctx.nextQuestions[0]?.id === q1.id) {
+    if (this.ctx.nextQuestions[0]?.id === q1.id || this.ctx.nextQuestions[0]?.question_id === q1.question_id) {
       this.ctx.nextQuestions.shift()
     }
 
@@ -144,12 +172,12 @@ export class NovaFlowController {
     }
 
     this.transition("Q1_VIDEO")
+    const videoUrl = this.ctx.lang === "fr" ? q1.video_url_fr || q1.video_url_en : q1.video_url_en || q1.video_url_fr
+
     return {
       type: "video",
-      url:
-        q1.video_url_en ||
-        q1.video_url_fr ||
-        "https://qpnalviccuopdwfscoli.supabase.co/storage/v1/object/public/system/question_missing.mp4",
+      url: videoUrl || "https://qpnalviccuopdwfscoli.supabase.co/storage/v1/object/public/system/question_missing.mp4",
+      question: q1,
     }
   }
 
