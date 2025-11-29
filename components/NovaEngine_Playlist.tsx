@@ -4,7 +4,8 @@ import { useState, useEffect, useRef, useMemo, useCallback } from "react"
 import { useRouter } from "next/navigation"
 import NovaRecorder from "@/components/NovaRecorder"
 import { useRepeatIntent } from "@/hooks/useRepeatIntent"
-import { NovaStartButton } from "@/components/ui/NovaStartButton"
+import MetalButton from "@/components/ui/metal-button"
+import NovaVideoPlayer from "@/components/NovaVideoPlayer"
 
 const isDefined = (x: any) => x !== undefined && x !== null
 
@@ -437,13 +438,10 @@ export default function NovaEngine_Playlist({ sessionId }: { sessionId: string }
       const intro1 = await flowRef.current.getIntro1()
       console.log("[v0] Got intro1:", intro1)
 
-      const intro2 = await flowRef.current.getIntro2()
-      console.log("[v0] Got intro2:", intro2)
+      playlist.add(intro1)
+      console.log("[v0] Added intro1 to playlist, size:", playlist.size())
 
-      playlist.add(intro1, intro2)
-      console.log("[v0] Added intros to playlist, size:", playlist.size())
-
-      console.log("🎞️ Playlist initialisée avec intro_1 + intro_2")
+      console.log("🎞️ Playlist initialisée avec intro_1")
       setIsPlaying(true)
       setVideoPaused(false)
       setHasStarted(true)
@@ -510,7 +508,6 @@ export default function NovaEngine_Playlist({ sessionId }: { sessionId: string }
       console.log("[v0] INTRO_1 ended, transitioning to INTRO_2")
       const intro2 = await flow.getIntro2()
       playlist.add(intro2)
-      playlist.next()
       return
     }
 
@@ -755,18 +752,18 @@ export default function NovaEngine_Playlist({ sessionId }: { sessionId: string }
   }, [])
 
   return (
-    <main className="h-screen w-screen bg-zinc-950 text-white overflow-hidden flex flex-col">
-      {/* Header bar - style Zoom/Teams */}
-      <header className="h-14 bg-zinc-900/80 backdrop-blur border-b border-zinc-800 flex items-center justify-between px-6">
+    <main className="h-screen w-screen bg-black text-white overflow-hidden flex flex-col">
+      <header className="h-14 bg-black/80 backdrop-blur-2xl border-b border-white/10 flex items-center justify-between px-6">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center">
-            <span className="text-white font-bold text-sm">N</span>
-          </div>
-          <span className="text-lg font-semibold">Nova Interview</span>
+          <img
+            src="https://qpnalviccuopdwfscoli.supabase.co/storage/v1/object/public/nova-annexes/talentee_logo_static.svg"
+            alt="Talentee"
+            className="h-8 w-auto"
+          />
         </div>
         <div className="flex items-center gap-4">
           {/* Live indicator */}
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-500/20">
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-500/10 border border-red-500/20">
             <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
             <span className="text-sm font-medium text-red-400">Live</span>
           </div>
@@ -785,18 +782,12 @@ export default function NovaEngine_Playlist({ sessionId }: { sessionId: string }
         >
           {/* Video player - full size */}
           {videoSrc ? (
-            <video
+            <NovaVideoPlayer
               ref={videoRef}
-              src={typeof videoSrc === "string" ? videoSrc : ""}
+              src={videoSrc}
               autoPlay
+              muted
               playsInline
-              preload="auto"
-              muted={!audioUnlocked}
-              onCanPlay={() => {
-                const v = videoRef.current
-                if (!v) return
-                v.play().catch(() => console.warn("Autoplay blocked:", videoSrc))
-              }}
               onPlay={() => {
                 console.log("Lecture en cours:", videoSrc)
                 setIsPlaying(true)
@@ -813,7 +804,7 @@ export default function NovaEngine_Playlist({ sessionId }: { sessionId: string }
                 }
 
                 const q = flowRef.current?.ctx?.currentQuestion
-                if (q) {
+                if (q && isQuestionVideo(src)) {
                   const lang = session?.lang || "en"
                   const promptKey = `audio_prompt_${lang}`
                   const textKey = `text_${lang}`
@@ -835,21 +826,22 @@ export default function NovaEngine_Playlist({ sessionId }: { sessionId: string }
               className="absolute inset-0 w-full h-full object-contain"
             />
           ) : (
-            <div className="absolute inset-0 bg-gradient-to-br from-zinc-900 via-zinc-800 to-black flex items-center justify-center">
-              <div className="text-zinc-500 text-lg">Preparing interview...</div>
+            <div className="absolute inset-0 bg-gradient-to-br from-black via-zinc-900 to-black flex items-center justify-center">
+              <div className="text-white/40 text-lg font-light">Preparing interview...</div>
             </div>
           )}
 
-          {/* Start button overlay */}
           {!hasStarted && (
-            <div className="absolute inset-0 z-30 flex items-center justify-center bg-black/40">
-              <NovaStartButton
-                label="Start Simulation"
+            <div className="absolute inset-0 z-30 flex items-center justify-center bg-black/60 backdrop-blur-sm">
+              <MetalButton
+                variant="primary"
                 onClick={async () => {
                   console.log("Bouton START clique!")
                   await handleStart()
                 }}
-              />
+              >
+                Start Simulation
+              </MetalButton>
             </div>
           )}
 
@@ -882,7 +874,7 @@ export default function NovaEngine_Playlist({ sessionId }: { sessionId: string }
               onMouseLeave={() => setUserCameraHovered(false)}
             >
               <div
-                className={`rounded-xl overflow-hidden border-2 border-zinc-600/50 bg-zinc-900 shadow-2xl transition-all duration-300 ${
+                className={`rounded-2xl overflow-hidden border border-white/20 bg-black shadow-2xl transition-all duration-300 ${
                   userCameraHovered ? "w-56 h-42" : "w-40 h-30"
                 }`}
                 style={{ width: userCameraHovered ? 224 : 160, height: userCameraHovered ? 168 : 120 }}
@@ -899,60 +891,9 @@ export default function NovaEngine_Playlist({ sessionId }: { sessionId: string }
                   className="w-full h-full object-cover scale-x-[-1]"
                 />
               </div>
-              <span className="absolute bottom-2 left-3 text-xs text-white/80 bg-black/60 px-2 py-0.5 rounded-md font-medium">
+              <span className="absolute bottom-2 left-3 text-xs text-white/80 bg-black/60 backdrop-blur-xl px-2 py-0.5 rounded-full font-medium">
                 You
               </span>
-            </div>
-          )}
-
-          {/* Bottom control bar - centered over video */}
-          {hasStarted && (
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex items-center gap-3 px-4 py-2.5 bg-zinc-900/95 backdrop-blur-xl rounded-2xl border border-zinc-700/50 shadow-2xl">
-              {/* Mute/Unmute audio button */}
-              {!audioUnlocked ? (
-                <button
-                  onClick={async (e) => {
-                    e.stopPropagation()
-                    const v = videoRef.current
-                    if (v) {
-                      v.muted = false
-                      try {
-                        await v.play()
-                      } catch {}
-                    }
-                    setAudioUnlocked(true)
-                  }}
-                  className="flex items-center gap-2 px-4 py-2 rounded-xl bg-red-500/20 hover:bg-red-500/30 text-red-400 transition-all hover:scale-105"
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"
-                    />
-                  </svg>
-                  <span className="text-sm font-medium">Unmute</span>
-                </button>
-              ) : (
-                <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-800 text-emerald-400">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
-                    />
-                  </svg>
-                  <span className="text-sm font-medium">Audio On</span>
-                </div>
-              )}
             </div>
           )}
 
@@ -971,10 +912,10 @@ export default function NovaEngine_Playlist({ sessionId }: { sessionId: string }
         </div>
 
         {/* Chat sidebar - fixed width */}
-        <aside className="w-80 lg:w-96 bg-zinc-900/50 border-l border-zinc-800 flex flex-col">
+        <aside className="w-80 lg:w-96 bg-black/50 border-l border-white/10 flex flex-col">
           {/* Chat header */}
-          <div className="h-14 px-4 flex items-center border-b border-zinc-800 bg-zinc-900/80">
-            <h2 className="font-semibold text-zinc-200">Chat</h2>
+          <div className="h-14 px-4 flex items-center border-b border-white/10 bg-black/80">
+            <h2 className="font-semibold text-white/80">Chat</h2>
           </div>
 
           {/* Chat messages */}
@@ -983,7 +924,7 @@ export default function NovaEngine_Playlist({ sessionId }: { sessionId: string }
           </div>
 
           {/* Recorder at bottom */}
-          <div className="p-4 border-t border-zinc-800 bg-zinc-950/80">{/* NovaRecorder is now positioned here */}</div>
+          <div className="p-4 border-t border-white/10 bg-black/90">{/* NovaRecorder is now positioned here */}</div>
         </aside>
       </div>
 
