@@ -1,12 +1,13 @@
 /**
  * ======================================================
- *  🎧 NovaIdleManager_Playlist — V5 Video + Audio + Multilingue
+ *  🎧 NovaIdleManager_Playlist — V3 Production (+ Écran Fin Nova)
  * ------------------------------------------------------
- *  🔥 Supporte :
- *    • simulation_mode = "video" → idle_listen + clarify vidéo
- *    • simulation_mode = "audio" → pas de vidéos idle, tout audio ElevenLabs
- *    • relances ElevenLabs dans toutes les langues (EN, FR, ES, IT, DE, ZH, KO…)
- *    • multilingue complet (followText, clarify, GPT)
+ *  Gère les boucles d'écoute et relances dans le flux Playlist :
+ *  - idle_listen ×5 puis idle_smile
+ *  - relance Clarify après 5s de silence
+ *  - double silence → question suivante
+ *  - voix ElevenLabs intégrée pour les relances GPT
+ *  - ajout écran noir + logo Nova à la fin
  * ======================================================
  */
 
@@ -18,6 +19,8 @@ type IdleManagerOptions = {
   playlist: NovaPlaylistManager
   onNextQuestion: () => Promise<void>
   getFollowupText?: () => Promise<string | null>
+  onRelanceStart?: () => void
+  onRelanceEnd?: () => void
 }
 
 export class NovaIdleManager_Playlist {
@@ -25,33 +28,25 @@ export class NovaIdleManager_Playlist {
   private playlist: NovaPlaylistManager
   private onNextQuestion: () => Promise<void>
   private getFollowupText?: () => Promise<string | null>
+  private onRelanceStart?: () => void
+  private onRelanceEnd?: () => void
   private silenceTimer: any = null
   private hasSpoken = false
   private relanceCount = 0
-
-  private simulationMode: "video" | "audio"
 
   constructor(opts: IdleManagerOptions) {
     this.lang = opts.lang
     this.playlist = opts.playlist
     this.onNextQuestion = opts.onNextQuestion
     this.getFollowupText = opts.getFollowupText
-
-    this.simulationMode = (window as any).__novaSimulationMode === "audio" ? "audio" : "video"
-
-    console.log("🎛 IdleManager mode:", this.simulationMode)
+    this.onRelanceStart = opts.onRelanceStart
+    this.onRelanceEnd = opts.onRelanceEnd
   }
 
   /* ======================================================
      🎧 Boucle d'écoute principale (idle_listen → smile)
-     🔥 VIDEO-ONLY — ignoré en mode audio
   ====================================================== */
   async startLoop() {
-    if (this.simulationMode !== "video") {
-      console.log("🎧 Idle loop ignoré (mode audio-only)")
-      return
-    }
-
     console.log("🎧 IdleManager_Playlist — boucle écoute démarrée")
     await this.enqueueIdleSet()
     this.resetSilenceTimer()
@@ -122,13 +117,18 @@ export class NovaIdleManager_Playlist {
   }
 
   /* ======================================================
-     🗣 Séquence Clarify — vidéo ou audio selon mode
+     🗣 Séquence Clarify (relance IA + voix ElevenLabs)
   ====================================================== */
   private async enqueueClarifySequence() {
     try {
       console.log("🎞 Clarify sequence — Nova relance IA")
 
-      const isVideoMode = this.simulationMode === "video"
+      this.onRelanceStart?.()
+
+      const clar1 = await getSystemVideo("clarify_end_alt", this.lang)
+      const clar2 = await getSystemVideo("clarify_end", this.lang)
+
+      // ... existing code for fetching relance ...
 
       const sessionId = (window as any).__novaSessionId
       const metrics = (window as any).__novaResponseMetrics || {}
@@ -162,24 +162,14 @@ export class NovaIdleManager_Playlist {
           const audioUrl = rel.audio_url
           const relanceText = rel.relance_text
 
-          if (isVideoMode) {
-            const clar1 = await getSystemVideo("clarify_end_alt", this.lang)
-            this.playlist.add(clar1)
-
-            if (audioUrl) {
-              const audio = new Audio(audioUrl)
-              audio.volume = 1.0
-              await audio.play().catch(() => {})
-            }
-
-            const clar2 = await getSystemVideo("clarify_end", this.lang)
-            this.playlist.add(clar2)
-          } else {
-            if (audioUrl) {
-              const audio = new Audio(audioUrl)
-              audio.volume = 1.0
-              await audio.play().catch(() => {})
-            }
+          if (audioUrl) {
+            const audio = new Audio(audioUrl)
+            audio.volume = 1.0
+            await new Promise<void>((resolve) => {
+              audio.onended = () => resolve()
+              audio.onerror = () => resolve()
+              audio.play().catch(() => resolve())
+            })
           }
 
           console.log("💬 Relance Nova:", relanceText)
@@ -188,13 +178,17 @@ export class NovaIdleManager_Playlist {
         }
       }
 
-      // 🔁 Après la relance → reprendre l'écoute (video mode only)
-      if (isVideoMode) {
-        setTimeout(() => this.enqueueIdleSet(), 2000)
-      }
+      // Ajoute les deux vidéos Clarify dans la playlist
+      this.playlist.add(clar1, clar2)
+
+      this.onRelanceEnd?.()
+
+      // 🔁 Après la relance → reprendre l'écoute
+      setTimeout(() => this.enqueueIdleSet(), 2000)
       this.resetSilenceTimer()
     } catch (err) {
       console.error("❌ Clarify sequence error :", err)
+      this.onRelanceEnd?.()
       await this.onNextQuestion?.()
     }
   }
