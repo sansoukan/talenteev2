@@ -1028,3 +1028,4 @@ export function emitSilence() {
     if (typeof cb === "function") cb()
   } catch {}
 }
+  
