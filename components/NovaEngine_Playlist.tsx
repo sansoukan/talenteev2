@@ -114,6 +114,7 @@ export default function NovaEngine_Playlist({ sessionId }: { sessionId: string }
   const [micEnabled, setMicEnabled] = useState(false)
   const [isListeningPhase, setIsListeningPhase] = useState(false)
   const [isSilencePhase, setIsSilencePhase] = useState(false)
+  const idleLoopStartedRef = useRef(false)
 
   const responseMetrics = useRef<ResponseMetrics>({
     startTime: 0,
@@ -137,6 +138,7 @@ export default function NovaEngine_Playlist({ sessionId }: { sessionId: string }
 
     if (isListeningPhase && recordingRef.current) {
       console.log("[v0] Opening microphone - listening phase started")
+      // Resume AudioContext if suspended (requires user interaction)
       recordingRef.current.startRecording()
       setMicEnabled(true)
     } else if (!isListeningPhase && recordingRef.current?.isRecording?.()) {
@@ -260,6 +262,7 @@ export default function NovaEngine_Playlist({ sessionId }: { sessionId: string }
         console.log("[v0] IdleManager: Moving to next question")
         setIsListeningPhase(false)
         setIsSilencePhase(false)
+        idleLoopStartedRef.current = false
 
         const next = await flowRef.current.fetchNextQuestion()
         if (next) {
@@ -290,6 +293,7 @@ export default function NovaEngine_Playlist({ sessionId }: { sessionId: string }
       },
       onRelanceEnd: () => {
         console.log("[v0] IdleManager: Relance ended - reopening mic")
+        idleLoopStartedRef.current = false
         setIsListeningPhase(true)
         setIsSilencePhase(false)
       },
@@ -307,7 +311,10 @@ export default function NovaEngine_Playlist({ sessionId }: { sessionId: string }
         console.log("[v0] Idle listen video detected - enabling mic")
         setIsListeningPhase(true)
         setIsSilencePhase(false)
-        idleMgrRef.current?.startLoop?.()
+        if (!idleLoopStartedRef.current) {
+          idleLoopStartedRef.current = true
+          idleMgrRef.current?.startLoop?.()
+        }
       } else if (isIdleSmileVideo(next)) {
         console.log("[v0] Idle smile video detected - silence phase")
         setIsSilencePhase(true)
@@ -487,7 +494,6 @@ export default function NovaEngine_Playlist({ sessionId }: { sessionId: string }
     }
 
     prevVideoRef.current = currentSrc
-    playlist.next()
 
     if (!flowRef.current) {
       console.error("❌ FlowController non initialisé")
@@ -501,6 +507,7 @@ export default function NovaEngine_Playlist({ sessionId }: { sessionId: string }
 
     // INTRO 1 → INTRO 2
     if (state === "INTRO_1") {
+      console.log("[v0] INTRO_1 ended, transitioning to INTRO_2")
       const intro2 = await flow.getIntro2()
       playlist.add(intro2)
       playlist.next()
@@ -509,6 +516,9 @@ export default function NovaEngine_Playlist({ sessionId }: { sessionId: string }
 
     // INTRO 2 → Q1
     if (state === "INTRO_2") {
+      console.log("[v0] INTRO_2 ended, transitioning to Q1")
+      idleLoopStartedRef.current = false
+
       const first = await flow.fetchQ1()
 
       if (!first) {
@@ -546,33 +556,13 @@ export default function NovaEngine_Playlist({ sessionId }: { sessionId: string }
 
     if (state === "Q1_VIDEO") {
       console.log("🎤 Q1 video ended - adding idle and starting mic")
+      idleLoopStartedRef.current = false
+
       const idle = await flow.getIdleListen()
       playlist.add(idle)
       playlist.next()
       setIsListeningPhase(true)
       idleMgrRef.current?.startLoop?.()
-      return
-    }
-
-    // Q1_AUDIO → RUN
-    if (state === "Q1_AUDIO") {
-      const next = await flow.fetchNextQuestion()
-
-      if (!next) {
-        console.log("🏁 Plus de question → fin")
-        return
-      }
-
-      if (next.type === "video") {
-        playlist.add(next.url)
-      } else if (next.type === "audio") {
-        responseMetrics.current.currentQuestionId = next.question.id
-        await playAudioQuestion(next.question)
-        const idle = await flow.getIdleListen()
-        playlist.add(idle)
-      }
-
-      playlist.next()
       return
     }
 

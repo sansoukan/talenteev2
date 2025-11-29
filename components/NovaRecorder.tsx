@@ -23,9 +23,11 @@ const NovaRecorder = forwardRef((props: NovaRecorderProps, ref) => {
 
   const streamRef = useRef<MediaStream | null>(null)
   const analyserRef = useRef<AnalyserNode | null>(null)
+  const audioCtxRef = useRef<AudioContext | null>(null)
   const silenceTimerRef = useRef<NodeJS.Timeout | null>(null)
   const isRecordingRef = useRef(false)
   const hasSpokenRef = useRef(false)
+  const animationFrameRef = useRef<number | null>(null)
 
   useEffect(() => {
     isRecordingRef.current = isRecording
@@ -38,6 +40,11 @@ const NovaRecorder = forwardRef((props: NovaRecorderProps, ref) => {
   }))
 
   async function startRecording() {
+    if (isRecordingRef.current) {
+      console.log("[v0] NovaRecorder: Already recording, skipping start")
+      return
+    }
+
     try {
       setError(null)
       hasSpokenRef.current = false
@@ -49,6 +56,14 @@ const NovaRecorder = forwardRef((props: NovaRecorderProps, ref) => {
       streamRef.current = stream
 
       const audioCtx = new AudioContext()
+      audioCtxRef.current = audioCtx
+
+      // Resume AudioContext if suspended
+      if (audioCtx.state === "suspended") {
+        console.log("[v0] NovaRecorder: Resuming suspended AudioContext")
+        await audioCtx.resume()
+      }
+
       const source = audioCtx.createMediaStreamSource(stream)
 
       const analyser = audioCtx.createAnalyser()
@@ -59,8 +74,9 @@ const NovaRecorder = forwardRef((props: NovaRecorderProps, ref) => {
       setIsRecording(true)
       isRecordingRef.current = true
 
-      console.log("[v0] NovaRecorder: Recording started, mic open")
-      requestAnimationFrame(monitor)
+      console.log("[v0] NovaRecorder: Recording started, mic open, AudioContext state:", audioCtx.state)
+
+      animationFrameRef.current = requestAnimationFrame(monitor)
     } catch (err) {
       console.error("[v0] NovaRecorder: Microphone error", err)
       setError("Microphone access denied")
@@ -75,11 +91,22 @@ const NovaRecorder = forwardRef((props: NovaRecorderProps, ref) => {
       silenceTimerRef.current = null
     }
 
+    if (animationFrameRef.current) {
+      cancelAnimationFrame(animationFrameRef.current)
+      animationFrameRef.current = null
+    }
+
+    if (audioCtxRef.current) {
+      audioCtxRef.current.close().catch(() => {})
+      audioCtxRef.current = null
+    }
+
     try {
       streamRef.current?.getTracks().forEach((t) => t.stop())
       streamRef.current = null
     } catch {}
 
+    analyserRef.current = null
     setIsRecording(false)
     isRecordingRef.current = false
     setVolume(0)
@@ -120,7 +147,7 @@ const NovaRecorder = forwardRef((props: NovaRecorderProps, ref) => {
       }
     }
 
-    requestAnimationFrame(monitor)
+    animationFrameRef.current = requestAnimationFrame(monitor)
   }
 
   function scheduleSilence() {
@@ -142,6 +169,12 @@ const NovaRecorder = forwardRef((props: NovaRecorderProps, ref) => {
       })
     }, SILENCE_DELAY)
   }
+
+  useEffect(() => {
+    return () => {
+      stopRecording()
+    }
+  }, [])
 
   return (
     <div className="flex items-center gap-3 px-4 py-3 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10">
